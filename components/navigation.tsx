@@ -21,7 +21,7 @@ export function Navigation() {
     <header className="fixed w-full top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="#home" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <AnimatedLogo variant="vertical-pulse" size="sm" showText={false} />
+          <AnimatedLogo variant="auto" size="sm" showText={false} />
           <div className="hidden sm:block">
             <h2 className="text-xl font-bold text-primary">PeakSNR</h2>
             <p className="text-xs text-muted-foreground">Signal Solutions</p>

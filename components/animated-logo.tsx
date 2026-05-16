@@ -1,16 +1,53 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { useCurrentSection } from '@/hooks/use-current-section';
+
+type Variant = 'vertical-pulse' | 'horizontal-line' | 'network-nodes' | 'equalizer' | 'frequency-spectrum';
+
 interface AnimatedLogoProps {
-  variant?: 'vertical-pulse' | 'horizontal-line' | 'network-nodes' | 'equalizer' | 'frequency';
+  variant?: Variant | 'auto';
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showText?: boolean;
 }
 
 export function AnimatedLogo({ 
-  variant = 'vertical-pulse', 
+  variant = 'auto', 
   size = 'md',
   showText = true 
 }: AnimatedLogoProps) {
+  const currentSection = useCurrentSection();
+  const [displayVariant, setDisplayVariant] = useState<Variant>('vertical-pulse');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Map sections to logo variants
+  const getSectionVariant = (section: string): Variant => {
+    const variantMap: Record<string, Variant> = {
+      'home': 'vertical-pulse',
+      'services': 'equalizer',
+      'vision': 'network-nodes',
+      'story': 'frequency-spectrum',
+      'contact': 'horizontal-line',
+    };
+    return variantMap[section] || 'vertical-pulse';
+  };
+
+  // Update variant based on section
+  useEffect(() => {
+    if (variant === 'auto') {
+      const newVariant = getSectionVariant(currentSection);
+      if (newVariant !== displayVariant) {
+        setIsTransitioning(true);
+        const timer = setTimeout(() => {
+          setDisplayVariant(newVariant);
+          setIsTransitioning(false);
+        }, 150);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [currentSection, variant, displayVariant]);
+
+  const activeVariant = variant === 'auto' ? displayVariant : (variant as Variant);
   const sizeMap = {
     sm: { svg: 80, bars: 4, textSize: 'text-sm' },
     md: { svg: 120, bars: 6, textSize: 'text-lg' },
@@ -21,8 +58,8 @@ export function AnimatedLogo({
   const config = sizeMap[size];
 
   return (
-    <div className="flex flex-col items-center gap-2">
-      {variant === 'vertical-pulse' && (
+    <div className={`flex flex-col items-center gap-2 transition-opacity duration-200 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+      {activeVariant === 'vertical-pulse' && (
         <svg 
           width={config.svg} 
           height={config.svg} 
@@ -50,7 +87,7 @@ export function AnimatedLogo({
         </svg>
       )}
 
-      {variant === 'horizontal-line' && (
+      {activeVariant === 'horizontal-line' && (
         <svg 
           width={config.svg} 
           height={config.svg} 
@@ -81,7 +118,7 @@ export function AnimatedLogo({
         </svg>
       )}
 
-      {variant === 'network-nodes' && (
+      {activeVariant === 'network-nodes' && (
         <svg 
           width={config.svg} 
           height={config.svg} 
@@ -113,7 +150,7 @@ export function AnimatedLogo({
         </svg>
       )}
 
-      {variant === 'equalizer' && (
+      {activeVariant === 'equalizer' && (
         <svg 
           width={config.svg} 
           height={config.svg} 
@@ -142,7 +179,7 @@ export function AnimatedLogo({
         </svg>
       )}
 
-      {variant === 'frequency' && (
+      {activeVariant === 'frequency-spectrum' && (
         <svg 
           width={config.svg} 
           height={config.svg} 
@@ -180,9 +217,9 @@ export function AnimatedLogo({
       {showText && (
         <div className="text-center">
           <h1 className={`font-bold text-primary ${config.textSize}`}>
-            PEAK SNR
+            PeakSNR
           </h1>
-          <p className="text-xs text-muted-foreground">Signal Processing Solutions</p>
+          <p className="text-xs text-muted-foreground">Signal Solutions</p>
         </div>
       )}
     </div>
