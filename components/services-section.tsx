@@ -7,7 +7,7 @@ const services = [
   {
     icon: Zap,
     title: 'AI Voice & Language Solutions',
-    description: 'Custom LLM deployments optimized for voice applications. Real-time voice synthesis, transcription, and intelligent call processing that understands context and delivers precise responses—cutting through confusion to deliver clear outcomes.'
+    description: 'Custom LLM deployments optimized for voice applications. Real-time voice synthesis, transcription, and intelligent call processing that understands context and delivers precise results every time.'
   },
   {
     icon: Cpu,
@@ -22,7 +22,7 @@ const services = [
   {
     icon: Cloud,
     title: 'Cloud Voice Infrastructure',
-    description: 'Scalable, intelligent voice and audio streaming platforms. Multi-protocol support, adaptive bitrate optimization, and smart routing ensure every conversation arrives clear, secure, and on-time.'
+    description: 'Scalable, intelligent voice and audio streaming platforms. Multi-protocol support, adaptive bitrate optimization, and smart routing ensure every conversation arrives clear, secure, and on time.'
   }
 ];
 
@@ -74,7 +74,7 @@ export function ServicesSection() {
                     <h3 className="text-xl font-bold mb-3 text-foreground">
                       {service.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed text-justify hyphens-auto">
                       {service.description}
                     </p>
                   </div>

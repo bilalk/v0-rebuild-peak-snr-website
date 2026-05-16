@@ -46,11 +46,11 @@ export function CompanyVision() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 The PeakSNR <span className="text-accent">Approach</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-muted-foreground mb-6 text-justify hyphens-auto">
                 Every communication system generates noise—interference, latency, dropped packets, unclear audio. PeakSNR removes it. 
                 We take complex enterprise communication challenges and engineer solutions that deliver crystal-clear results, at scale.
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-muted-foreground text-justify hyphens-auto">
                 Whether optimizing AI voice systems, accelerating GPU processing, or securing critical infrastructure, 
                 we apply disciplined engineering and deep signal expertise to maximize performance and reliability.
               </p>
@@ -103,7 +103,7 @@ export function CompanyVision() {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-bold text-foreground mb-2">{pillar.title}</h3>
-                      <p className="text-sm text-muted-foreground">{pillar.description}</p>
+                      <p className="text-sm text-muted-foreground text-justify hyphens-auto">{pillar.description}</p>
                     </div>
                   </div>
                 </Card>
