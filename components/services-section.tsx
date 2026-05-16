@@ -6,23 +6,23 @@ import { Zap, Radio, Cpu, Cloud } from 'lucide-react';
 const services = [
   {
     icon: Zap,
-    title: 'Signal Processing Solutions',
-    description: 'Real-time signal analysis, filtering, and custom DSP algorithm implementation. We deliver precision signal processing for enterprise applications requiring millisecond-latency and deterministic performance.'
-  },
-  {
-    icon: Radio,
-    title: 'VoIP & Radio Solutions',
-    description: 'Enterprise VoIP gateway systems and Radio over IP (RoIP) platforms with military-grade security. Built from the ground up for critical communications infrastructure and 24/7 reliability.'
+    title: 'AI Voice & Language Solutions',
+    description: 'Custom LLM deployments optimized for voice applications. Real-time voice synthesis, transcription, and intelligent call processing that understands context and delivers precise responses—cutting through confusion to deliver clear outcomes.'
   },
   {
     icon: Cpu,
-    title: 'GPU-Accelerated Voice Services',
-    description: 'Custom LLM deployments for voice applications with GPU acceleration. Real-time voice, video, and audio streaming with advanced codec support and protocol optimization.'
+    title: 'GPU-Accelerated Processing',
+    description: 'Enterprise-grade GPU acceleration for intensive voice and video processing. Handle millions of concurrent streams with millisecond latency, powering everything from live transcription to real-time AI analysis.'
+  },
+  {
+    icon: Radio,
+    title: 'Enterprise Radio & VoIP',
+    description: 'Secure communications platforms for mission-critical infrastructure. Radio over IP systems and VoIP gateways engineered for reliability, clarity, and enterprise-scale deployments.'
   },
   {
     icon: Cloud,
-    title: 'Cloud & AI Voice Solutions',
-    description: 'Cloud-native voice infrastructure with AI-powered voice processing, synthesis, and analysis. Scalable deployments supporting high-throughput voice services and intelligent audio processing.'
+    title: 'Cloud Voice Infrastructure',
+    description: 'Scalable, intelligent voice and audio streaming platforms. Multi-protocol support, adaptive bitrate optimization, and smart routing ensure every conversation arrives clear, secure, and on-time.'
   }
 ];
 
@@ -48,10 +48,10 @@ export function ServicesSection() {
         {/* Section header */}
         <div className="max-w-2xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Solutions That <span className="text-accent">Amplify Signal</span>
+            PeakSNR <span className="text-accent">Solutions</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Cutting-edge software solutions engineered for precision, security, and performance
+            Filter the noise. Amplify results. Enterprise software engineered for clarity and scale.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export function ServicesSection() {
         {/* Bottom tagline */}
         <div className="mt-16 text-center">
           <p className="text-sm text-muted-foreground uppercase tracking-widest">
-            Enterprise Solutions Built on Signal Processing Excellence
+            Peak Signal-to-Noise Ratio for Enterprise Communications
           </p>
         </div>
       </div>

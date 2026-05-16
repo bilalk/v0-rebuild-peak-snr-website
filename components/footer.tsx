@@ -42,10 +42,10 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Zap className="h-6 w-6 text-accent" />
-              <h3 className="text-xl font-bold text-foreground">PEAK SNR</h3>
+              <h3 className="text-xl font-bold text-foreground">PeakSNR</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Signal Processing Solutions by Military College Alumni. Cutting through noise, delivering crystal-clear results.
+              Enterprise software solutions engineered to cut through noise and deliver maximum clarity for voice, AI, and communications infrastructure.
             </p>
           </div>
 
@@ -74,10 +74,10 @@ export function Footer() {
           {/* Footer bottom */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-muted-foreground">
-              © {currentYear} Peak SNR. All rights reserved.
+              © {currentYear} PeakSNR. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground text-center md:text-right">
-              Engineered for Signal Processing Excellence | Military-Grade Precision
+              Precision Engineering for Enterprise Communications | Cut the Noise, Deliver the Signal
             </p>
           </div>
         </div>

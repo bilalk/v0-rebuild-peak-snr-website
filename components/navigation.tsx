@@ -23,7 +23,7 @@ export function Navigation() {
         <Link href="#home" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <AnimatedLogo variant="vertical-pulse" size="sm" showText={false} />
           <div className="hidden sm:block">
-            <h2 className="text-xl font-bold text-primary">PEAK SNR</h2>
+            <h2 className="text-xl font-bold text-primary">PeakSNR</h2>
             <p className="text-xs text-muted-foreground">Signal Solutions</p>
           </div>
         </Link>

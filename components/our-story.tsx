@@ -15,61 +15,60 @@ export function OurStory() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary">
-                Built on Military Signal Excellence
+                The PeakSNR Origin
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Peak SNR emerges from the legacy of the Military College of Signals—an institution renowned for producing 
-                world-class signal processing engineers and telecommunications experts. Our founders bring this distinguished 
-                heritage into the commercial sector, translating decades of experience in critical communications systems into 
-                innovative software solutions.
+                PeakSNR was founded by engineers with deep expertise in signal processing, telecommunications, and enterprise 
+                systems. We recognized a gap in the market: enterprises needed software solutions that don't just work, but work 
+                with precision under demanding conditions. We built PeakSNR to be that solution—removing the noise from complex 
+                communications challenges.
               </p>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary">
-                From Signal Corps to Software Innovation
+                Why &quot;PeakSNR&quot;?
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                What began as deep expertise in radio frequency engineering, signal processing algorithms, and secure 
-                telecommunications has evolved into a modern software powerhouse. We've applied those time-tested principles 
-                of reliability, precision, and security to contemporary challenges: cloud infrastructure, AI voice processing, 
-                GPU acceleration, and enterprise-scale digital signal processing.
+                In technical communications, signal-to-noise ratio (SNR) measures how clearly a signal stands out from interference. 
+                It's a fundamental concept: good SNR = clear communication, bad SNR = confusion and failure. We named our company 
+                after this principle because it's what we do: we engineer solutions that maximize signal clarity, minimize noise, 
+                and deliver unmistakable results for enterprise customers.
               </p>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary">
-                Signal-to-Noise Ratio Philosophy
+                What We've Built
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                In signal processing, SNR measures how clearly a signal cuts through noise. We apply this philosophy to 
-                everything we build: clear communications, minimal overhead, maximum signal clarity. Our software reduces 
-                complexity (noise), amplifies value (signal), and delivers enterprise-grade solutions that perform flawlessly 
-                in demanding environments.
+                PeakSNR specializes in four core areas: AI-powered voice solutions that understand context and respond accurately, 
+                GPU acceleration for real-time processing at massive scale, secure enterprise radio and VoIP systems, and 
+                cloud-native communication infrastructure. Every solution applies our core principle: filter the noise, amplify 
+                the signal, deliver exceptional results.
               </p>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary">
-                Serving Enterprise & Critical Infrastructure
+                For Enterprise & Scale
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We partner with telecommunications providers, cloud infrastructure companies, government agencies, and systems 
-                integrators who demand uncompromising quality. Whether it's VoIP gateways that handle millions of calls, 
-                signal processing pipelines that operate at microsecond precision, or AI voice solutions deployed at scale—
-                Peak SNR solutions are engineered for mission-critical success.
+                We partner with telecom providers, cloud platforms, system integrators, and enterprises that demand uncompromising 
+                quality. Whether handling millions of concurrent voice streams, processing complex AI voice interactions, or 
+                powering secure critical infrastructure—PeakSNR solutions are engineered for mission-critical environments where 
+                clarity and reliability aren't optional.
               </p>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary">
-                Our Commitment
+                Our Promise
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We are committed to delivering software that embodies the precision, reliability, and innovation of the signal 
-                processing tradition. Every line of code, every architecture decision, and every integration reflects our 
-                dedication to excellence. We don't just build software—we build signal processing solutions that clear the noise 
-                and deliver unmistakable value.
+                When you work with PeakSNR, you get more than software. You get solutions engineered by specialists who understand 
+                signal integrity at every layer—from protocol design to deployment at scale. We don't compromise on quality, and 
+                we don't add unnecessary complexity. Just clean, clear, effective technology that delivers results.
               </p>
             </div>
           </div>
@@ -77,7 +76,7 @@ export function OurStory() {
           {/* Closing tagline */}
           <div className="mt-12 pt-12 border-t border-border text-center">
             <p className="text-xl text-accent font-semibold">
-              Peak SNR. Cut the Noise. Deliver the Signal.
+              PeakSNR. Cut the Noise. Deliver the Signal.
             </p>
           </div>
         </div>

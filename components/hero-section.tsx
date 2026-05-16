@@ -8,17 +8,62 @@ export function HeroSection() {
   return (
     <section 
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center pt-24 pb-12 md:pt-32 md:pb-20"
+      className="relative w-full min-h-screen flex items-center justify-center pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden"
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" viewBox="0 0 1200 600">
+      {/* Animated waveform/signal background */}
+      <div className="absolute inset-0 opacity-15">
+        <svg className="w-full h-full" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
           <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1"/>
-            </pattern>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="50%" stopColor="#06b6d4" />
+              <stop offset="100%" stopColor="#f97316" />
+            </linearGradient>
+            <filter id="waveBlur">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" />
+            </filter>
           </defs>
-          <rect width="1200" height="600" fill="url(#grid)" />
+          
+          {/* Animated flowing signal waves */}
+          <g filter="url(#waveBlur)" strokeLinecap="round" strokeLinejoin="round">
+            {/* Primary wave flowing from left to right */}
+            <path d="M -50 200 Q 50 150, 150 200 T 350 200 T 550 200 T 750 200 T 950 200 T 1150 200 T 1350 200" 
+              stroke="url(#waveGradient)" strokeWidth="3" fill="none" opacity="0.7"/>
+            
+            {/* Secondary wave with offset */}
+            <path d="M -50 250 Q 50 210, 150 250 T 350 250 T 550 250 T 750 250 T 950 250 T 1150 250 T 1350 250" 
+              stroke="#3b82f6" strokeWidth="2.5" fill="none" opacity="0.6" className="animate-pulse" style={{animationDelay: '0.1s'}}/>
+            
+            {/* Tertiary wave */}
+            <path d="M -50 300 Q 50 260, 150 300 T 350 300 T 550 300 T 750 300 T 950 300 T 1150 300 T 1350 300" 
+              stroke="#06b6d4" strokeWidth="2.5" fill="none" opacity="0.5" className="animate-pulse" style={{animationDelay: '0.2s'}}/>
+            
+            {/* Vertical accent lines - signal strength indicators */}
+            <line x1="200" y1="150" x2="200" y2="350" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4"/>
+            <line x1="400" y1="140" x2="400" y2="360" stroke="#06b6d4" strokeWidth="1.5" opacity="0.4"/>
+            <line x1="600" y1="160" x2="600" y2="340" stroke="#f97316" strokeWidth="1.5" opacity="0.4"/>
+            <line x1="800" y1="130" x2="800" y2="370" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4"/>
+            <line x1="1000" y1="170" x2="1000" y2="330" stroke="#06b6d4" strokeWidth="1.5" opacity="0.4"/>
+          </g>
+          
+          {/* Network connection nodes with pulsing effect */}
+          <g>
+            <circle cx="200" cy="200" r="5" fill="#3b82f6" opacity="0.8" className="animate-node-pulse"/>
+            <circle cx="400" cy="220" r="4" fill="#06b6d4" opacity="0.7" className="animate-node-pulse" style={{animationDelay: '0.2s'}}/>
+            <circle cx="600" cy="240" r="5" fill="#f97316" opacity="0.8" className="animate-node-pulse" style={{animationDelay: '0.4s'}}/>
+            <circle cx="800" cy="210" r="4" fill="#3b82f6" opacity="0.7" className="animate-node-pulse" style={{animationDelay: '0.1s'}}/>
+            <circle cx="1000" cy="250" r="5" fill="#06b6d4" opacity="0.8" className="animate-node-pulse" style={{animationDelay: '0.3s'}}/>
+          </g>
+          
+          {/* Connection lines between nodes */}
+          <g stroke="#3b82f6" strokeWidth="1" opacity="0.3" strokeDasharray="5,5">
+            <line x1="200" y1="200" x2="400" y2="220" />
+            <line x1="400" y1="220" x2="600" y2="240" />
+            <line x1="600" y1="240" x2="800" y2="210" />
+            <line x1="800" y1="210" x2="1000" y2="250" />
+            <line x1="200" y1="200" x2="600" y2="240" />
+            <line x1="400" y1="220" x2="800" y2="210" />
+          </g>
         </svg>
       </div>
 
@@ -35,8 +80,8 @@ export function HeroSection() {
               </h1>
               
               <p className="text-lg text-muted-foreground max-w-lg">
-                Founded by Military College of Signals alumni, we specialize in software solutions for signal processing, 
-                VoIP, radio systems, cloud infrastructure, and AI-powered voice solutions.
+                PeakSNR optimizes enterprise communications by filtering out the noise and amplifying what matters most. 
+                From AI voice solutions to custom radio systems, we deliver crystal-clear results through intelligent signal management.
               </p>
             </div>
 

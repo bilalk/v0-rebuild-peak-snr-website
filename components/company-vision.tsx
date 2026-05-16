@@ -6,23 +6,23 @@ import { Shield, Zap, Target, Code } from 'lucide-react';
 const visionPillars = [
   {
     icon: Shield,
-    title: 'Security First',
-    description: 'Military-grade encryption and security protocols built into every solution'
+    title: 'Enterprise Security',
+    description: 'Industrial-strength encryption and security protocols built into every solution'
   },
   {
     icon: Zap,
-    title: 'Peak Performance',
-    description: 'Optimized for high-throughput, low-latency signal processing'
+    title: 'Maximum Clarity',
+    description: 'Remove noise from complex communication systems. Ensure critical data arrives perfect.'
   },
   {
     icon: Target,
-    title: 'Precision Engineering',
-    description: 'Disciplined software development rooted in military signal corps traditions'
+    title: 'Precision Technology',
+    description: 'Disciplined engineering approach delivering measurable, reliable results at scale'
   },
   {
     icon: Code,
-    title: 'Custom Solutions',
-    description: 'Tailored software architectures for unique enterprise requirements'
+    title: 'Purpose-Built',
+    description: 'Custom architectures tailored to your enterprise needs and deployment requirements'
   }
 ];
 
@@ -43,45 +43,45 @@ export function CompanyVision() {
           <div className="space-y-8">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Founded on <span className="text-accent">Engineering Excellence</span>
+                The PeakSNR <span className="text-accent">Approach</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Peak SNR was founded by alumni of the Military College of Signals, bringing decades of expertise in 
-                signal processing, telecommunications, and security engineering.
+                Every communication system generates noise—interference, latency, dropped packets, unclear audio. PeakSNR removes it. 
+                We take complex enterprise communication challenges and engineer solutions that deliver crystal-clear results, at scale.
               </p>
               <p className="text-lg text-muted-foreground">
-                We apply military-grade precision, discipline, and innovation to every software solution, delivering systems 
-                that excel under demanding conditions and critical requirements.
+                Whether optimizing AI voice systems, accelerating GPU processing, or securing critical infrastructure, 
+                we apply disciplined engineering and deep signal expertise to maximize performance and reliability.
               </p>
             </div>
 
-            {/* Core competencies */}
+            {/* What We Deliver */}
             <div className="space-y-4">
-              <h3 className="text-xl font-bold text-primary">Core Competencies</h3>
+              <h3 className="text-xl font-bold text-primary">What We Deliver</h3>
               <ul className="space-y-3">
                 <li className="flex gap-3 items-start">
                   <span className="text-accent text-xl leading-none mt-1">•</span>
-                  <span className="text-muted-foreground">Digital Signal Processing (DSP) & Algorithm Development</span>
+                  <span className="text-muted-foreground">AI voice solutions optimized for accuracy and scale</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-accent text-xl leading-none mt-1">•</span>
-                  <span className="text-muted-foreground">Telecom & VoIP Infrastructure</span>
+                  <span className="text-muted-foreground">GPU-accelerated processing for real-time performance</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-accent text-xl leading-none mt-1">•</span>
-                  <span className="text-muted-foreground">Radio Systems & RoIP Solutions</span>
+                  <span className="text-muted-foreground">Enterprise radio and VoIP infrastructure</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-accent text-xl leading-none mt-1">•</span>
-                  <span className="text-muted-foreground">GPU Acceleration & High-Performance Computing</span>
+                  <span className="text-muted-foreground">Cloud-native communication platforms</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-accent text-xl leading-none mt-1">•</span>
-                  <span className="text-muted-foreground">AI/ML Voice Solutions & LLM Deployment</span>
+                  <span className="text-muted-foreground">Custom algorithm and protocol development</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-accent text-xl leading-none mt-1">•</span>
-                  <span className="text-muted-foreground">Cloud Architecture & Scalable Infrastructure</span>
+                  <span className="text-muted-foreground">Security-first architecture for mission-critical systems</span>
                 </li>
               </ul>
             </div>
