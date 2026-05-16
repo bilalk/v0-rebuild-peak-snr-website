@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { Linkedin, MessageCircle, Send } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Linkedin, Youtube, MessageCircle, Facebook } from 'lucide-react';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -13,42 +13,15 @@ export function ContactSection() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
-      const data = await response.json();
-      console.log('Message sent successfully:', data);
-      
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 5000);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
-      console.error('Contact form error:', err);
-    } finally {
-      setLoading(false);
-    }
+    const subject = encodeURIComponent(`Message from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    window.location.href = `mailto:info@peaksnr.tech?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -57,7 +30,7 @@ export function ContactSection() {
   };
 
   return (
-    <section 
+    <section
       id="contact"
       className="relative w-full py-20 md:py-32 bg-card/30"
     >
@@ -72,61 +45,80 @@ export function ContactSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* LinkedIn */}
-            <Card className="bg-background border-border hover:border-primary/50 transition-all p-8 text-center hover:shadow-lg hover:shadow-primary/20">
-              <div className="flex justify-center mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            {/* Facebook */}
+            <Card className="bg-background border-border hover:border-primary/50 transition-all p-6 text-center hover:shadow-lg hover:shadow-primary/20">
+              <div className="flex justify-center mb-3">
                 <div className="p-3 bg-primary/20 rounded-lg">
-                  <Linkedin className="h-8 w-8 text-primary" />
+                  <Facebook className="h-7 w-7 text-primary" />
                 </div>
               </div>
-              <h3 className="font-bold mb-2 text-foreground">LinkedIn</h3>
-              <p className="text-sm text-muted-foreground mb-4">Connect with our team professionally</p>
+              <h3 className="font-bold mb-1 text-foreground text-sm">Facebook</h3>
+              <p className="text-xs text-muted-foreground mb-3">Follow our page for updates</p>
               <a
-                href="https://linkedin.com"
+                href="https://www.facebook.com/profile.php?id=100065613390944"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:text-accent/80 font-semibold text-sm transition-colors"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
+              >
+                Visit Page →
+              </a>
+            </Card>
+
+            {/* LinkedIn */}
+            <Card className="bg-background border-border hover:border-primary/50 transition-all p-6 text-center hover:shadow-lg hover:shadow-primary/20">
+              <div className="flex justify-center mb-3">
+                <div className="p-3 bg-primary/20 rounded-lg">
+                  <Linkedin className="h-7 w-7 text-primary" />
+                </div>
+              </div>
+              <h3 className="font-bold mb-1 text-foreground text-sm">LinkedIn</h3>
+              <p className="text-xs text-muted-foreground mb-3">Connect with our team professionally</p>
+              <a
+                href="https://www.linkedin.com/company/102984111/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
               >
                 Visit Profile →
               </a>
             </Card>
 
             {/* Discord */}
-            <Card className="bg-background border-border hover:border-primary/50 transition-all p-8 text-center hover:shadow-lg hover:shadow-primary/20">
-              <div className="flex justify-center mb-4">
+            <Card className="bg-background border-border hover:border-primary/50 transition-all p-6 text-center hover:shadow-lg hover:shadow-primary/20">
+              <div className="flex justify-center mb-3">
                 <div className="p-3 bg-primary/20 rounded-lg">
-                  <MessageCircle className="h-8 w-8 text-primary" />
+                  <MessageCircle className="h-7 w-7 text-primary" />
                 </div>
               </div>
-              <h3 className="font-bold mb-2 text-foreground">Discord</h3>
-              <p className="text-sm text-muted-foreground mb-4">Join our community and technical discussions</p>
+              <h3 className="font-bold mb-1 text-foreground text-sm">Discord</h3>
+              <p className="text-xs text-muted-foreground mb-3">Find us: <strong className="text-foreground">kaybee2025</strong></p>
               <a
-                href="https://discord.com"
+                href="https://discord.com/users/kaybee2025"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:text-accent/80 font-semibold text-sm transition-colors"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
               >
-                Join Server →
+                Join Chat →
               </a>
             </Card>
 
-            {/* WhatsApp Business */}
-            <Card className="bg-background border-border hover:border-primary/50 transition-all p-8 text-center hover:shadow-lg hover:shadow-primary/20">
-              <div className="flex justify-center mb-4">
+            {/* YouTube */}
+            <Card className="bg-background border-border hover:border-primary/50 transition-all p-6 text-center hover:shadow-lg hover:shadow-primary/20">
+              <div className="flex justify-center mb-3">
                 <div className="p-3 bg-primary/20 rounded-lg">
-                  <Send className="h-8 w-8 text-primary" />
+                  <Youtube className="h-7 w-7 text-primary" />
                 </div>
               </div>
-              <h3 className="font-bold mb-2 text-foreground">WhatsApp Business</h3>
-              <p className="text-sm text-muted-foreground mb-4">Quick message for immediate responses</p>
+              <h3 className="font-bold mb-1 text-foreground text-sm">YouTube</h3>
+              <p className="text-xs text-muted-foreground mb-3">Watch our signal solutions content</p>
               <a
-                href="https://wa.me"
+                href="https://www.youtube.com/@peaksnr5510"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:text-accent/80 font-semibold text-sm transition-colors"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
               >
-                Start Chat →
+                Subscribe →
               </a>
             </Card>
           </div>
@@ -134,7 +126,7 @@ export function ContactSection() {
           {/* Contact Form */}
           <Card className="bg-background border-border p-8 md:p-12">
             <h3 className="text-2xl font-bold mb-8 text-foreground">Send us a Message</h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -184,24 +176,17 @@ export function ContactSection() {
                 />
               </div>
 
-              {error && (
-                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 text-sm">
-                  {error}
-                </div>
-              )}
-
               {submitted && (
                 <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-500 text-sm">
-                  Thank you! Your message has been sent. We&apos;ll get back to you soon.
+                  Thank you! Your email client will open to send your message.
                 </div>
               )}
 
-              <Button 
+              <Button
                 type="submit"
-                disabled={loading || submitted}
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
               >
-                {loading ? 'Sending...' : submitted ? 'Message Sent! ✓' : 'Send Message'}
+                Send Message
               </Button>
             </form>
           </Card>

@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark navy background -->
+  <rect width="32" height="32" rx="6" fill="#0f172a"/>
+  <!-- Signal bars: PeakSNR mountain shape -->
+  <!-- Bar 1 -->
+  <rect x="2" y="23" width="4" height="7" fill="#3b82f6" rx="1"/>
+  <!-- Bar 2 -->
+  <rect x="8" y="18" width="4" height="12" fill="#60a5fa" rx="1"/>
+  <!-- Bar 3 (tallest = peak) -->
+  <rect x="14" y="10" width="4" height="20" fill="#ffffff" rx="1"/>
+  <!-- Bar 4 -->
+  <rect x="20" y="15" width="4" height="15" fill="#60a5fa" rx="1"/>
+  <!-- Bar 5 -->
+  <rect x="26" y="21" width="4" height="9" fill="#3b82f6" rx="1"/>
+  <!-- Orange peak dot at top of center bar -->
+  <circle cx="16" cy="8" r="2.5" fill="#f97316"/>
+</svg>
