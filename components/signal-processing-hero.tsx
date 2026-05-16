@@ -23,13 +23,45 @@ export function SignalProcessingHero() {
   return (
     <section className="py-20 md:py-32">
       <div className="container mx-auto px-4">
-        {/* Brain with logos visualization - full width */}
+        {/* Rotating narrative explanations */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="min-h-[100px] flex items-center justify-center">
+            <p className="text-2xl md:text-3xl font-bold text-accent transition-all duration-500 fade-in-out">
+              {narratives[currentNarrative]}
+            </p>
+          </div>
+          <div className="flex justify-center gap-2 mt-8">
+            {narratives.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentNarrative(idx)}
+                className={`h-2 rounded-full transition-all ${
+                  idx === currentNarrative ? 'bg-accent w-8' : 'bg-muted w-2'
+                }`}
+                aria-label={`Go to narrative ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Brain with logos visualization */}
         <div className="flex justify-center">
           <div className="max-w-2xl w-full">
             <BrainWithLogos />
           </div>
         </div>
       </div>
+
+      <style>{`
+        .fade-in-out {
+          animation: fadeInOut 0.5s ease-in-out;
+        }
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: translateY(10px); }
+          50% { opacity: 1; }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 }
