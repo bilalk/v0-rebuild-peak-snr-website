@@ -11,7 +11,7 @@ const navItems = [
   { label: 'Company Vision', href: '#vision' },
   { label: 'Our Story', href: '#story' },
   { label: 'Contact', href: '#contact' },
-  { label: 'About', href: '#about' }
+  { label: 'Privacy', href: '/privacy' }
 ];
 
 export function Navigation() {

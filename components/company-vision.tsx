@@ -2,7 +2,7 @@
 
 import { Card } from '@/components/ui/card';
 import { Shield, Zap, Target, Code } from 'lucide-react';
-import { BrainWithSignals } from './brain-with-signals';
+import { BrainWithLogos } from './brain-with-logos';
 
 const visionPillars = [
   {
@@ -123,8 +123,8 @@ export function CompanyVision() {
             </p>
           </div>
           <div className="flex justify-center">
-            <div className="max-w-md w-full">
-              <BrainWithSignals />
+            <div className="max-w-lg w-full">
+              <BrainWithLogos />
             </div>
           </div>
         </div>
