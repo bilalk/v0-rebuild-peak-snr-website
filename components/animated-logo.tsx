@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useCurrentSection } from '@/hooks/use-current-section';
 
-type Variant = 'vertical-bars' | 'horizontal-line' | 'network-nodes' | 'equalizer' | 'frequency-wave';
+type Variant = 'vertical-bars' | 'horizontal-line' | 'network-nodes' | 'equalizer' | 'frequency-wave' | 'vertical-pulse';
 
 interface AnimatedLogoProps {
   variant?: Variant | 'auto';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   showText?: boolean;
 }
 
@@ -47,6 +47,7 @@ export function AnimatedLogo({ variant = 'auto', size = 'md', showText = true }:
     sm: { width: 40, height: 20 },
     md: { width: 60, height: 30 },
     lg: { width: 80, height: 40 },
+    xl: { width: 120, height: 60 },
   };
 
   const config = sizeConfig[size];
@@ -142,6 +143,33 @@ export function AnimatedLogo({ variant = 'auto', size = 'md', showText = true }:
             .w { stroke: currentColor; strokeWidth: 1.5; fill: none; strokeLinecap: round; animation: wave 2s ease-in-out infinite; }
           `}</style>
           <path className="w" d="M 2 15 Q 8 10, 14 15 T 26 15 T 38 15 T 50 15 T 60 15" />
+        </svg>
+      )}
+
+      {/* Vertical pulse - bars with pulsing glow effect */}
+      {activeVariant === 'vertical-pulse' && (
+        <svg width={config.width} height={config.height} viewBox="0 0 60 30" className="text-accent">
+          <style>{`
+            @keyframes vp1 { 0%, 100% { height: 8px; opacity: 0.6; } 50% { height: 26px; opacity: 1; } }
+            @keyframes vp2 { 0%, 100% { height: 14px; opacity: 0.7; } 50% { height: 30px; opacity: 1; } }
+            @keyframes vp3 { 0%, 100% { height: 18px; opacity: 0.8; } 50% { height: 30px; opacity: 1; } }
+            @keyframes vp4 { 0%, 100% { height: 14px; opacity: 0.7; } 50% { height: 28px; opacity: 1; } }
+            @keyframes vp5 { 0%, 100% { height: 8px; opacity: 0.6; } 50% { height: 24px; opacity: 1; } }
+            .vp1 { animation: vp1 1.2s ease-in-out infinite; }
+            .vp2 { animation: vp2 1.2s ease-in-out infinite 0.12s; }
+            .vp3 { animation: vp3 1.2s ease-in-out infinite 0.24s; }
+            .vp4 { animation: vp4 1.2s ease-in-out infinite 0.12s; }
+            .vp5 { animation: vp5 1.2s ease-in-out infinite 0.06s; }
+            .vp6 { animation: vp1 1.2s ease-in-out infinite 0.18s; }
+            .vp7 { animation: vp2 1.2s ease-in-out infinite 0.3s; }
+          `}</style>
+          <rect className="vp1" x="4" y="15" width="5" height="8" fill="currentColor" rx="1" />
+          <rect className="vp2" x="12" y="11" width="5" height="14" fill="currentColor" rx="1" />
+          <rect className="vp3" x="20" y="9" width="5" height="18" fill="currentColor" rx="1" />
+          <rect className="vp4" x="28" y="11" width="5" height="14" fill="currentColor" rx="1" />
+          <rect className="vp5" x="36" y="13" width="5" height="10" fill="currentColor" rx="1" />
+          <rect className="vp6" x="44" y="15" width="5" height="8" fill="currentColor" rx="1" />
+          <rect className="vp7" x="52" y="12" width="5" height="12" fill="currentColor" rx="1" />
         </svg>
       )}
 
