@@ -6,11 +6,11 @@ import { Menu, X } from 'lucide-react';
 import { AnimatedLogo } from './animated-logo';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'Company Vision', href: '#vision' },
-  { label: 'Our Story', href: '#story' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Company Vision', href: '/#vision' },
+  { label: 'Our Story', href: '/#story' },
+  { label: 'Contact', href: '/#contact' },
   { label: 'Privacy', href: '/privacy' }
 ];
 
@@ -20,7 +20,7 @@ export function Navigation() {
   return (
     <header className="fixed w-full top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="#home" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <AnimatedLogo variant="auto" size="sm" showText={false} />
           <div className="hidden sm:block">
             <h2 className="text-xl font-bold text-primary">PeakSNR</h2>

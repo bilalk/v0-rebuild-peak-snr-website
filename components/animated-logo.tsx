@@ -3,32 +3,28 @@
 import { useState, useEffect } from 'react';
 import { useCurrentSection } from '@/hooks/use-current-section';
 
-type Variant = 'vertical-pulse' | 'horizontal-line' | 'network-nodes' | 'equalizer' | 'frequency-spectrum';
+type Variant = 'vertical-bars' | 'horizontal-line' | 'network-nodes' | 'equalizer' | 'frequency-wave';
 
 interface AnimatedLogoProps {
   variant?: Variant | 'auto';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg';
   showText?: boolean;
 }
 
-export function AnimatedLogo({ 
-  variant = 'auto', 
-  size = 'md',
-  showText = true 
-}: AnimatedLogoProps) {
+export function AnimatedLogo({ variant = 'auto', size = 'md', showText = true }: AnimatedLogoProps) {
   const currentSection = useCurrentSection();
-  const [displayVariant, setDisplayVariant] = useState<Variant>('vertical-pulse');
+  const [displayVariant, setDisplayVariant] = useState<Variant>('vertical-bars');
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const getSectionVariant = (section: string): Variant => {
     const variantMap: Record<string, Variant> = {
-      'home': 'vertical-pulse',
+      'home': 'vertical-bars',
       'services': 'equalizer',
       'vision': 'network-nodes',
-      'story': 'frequency-spectrum',
+      'story': 'frequency-wave',
       'contact': 'horizontal-line',
     };
-    return variantMap[section] || 'vertical-pulse';
+    return variantMap[section] || 'vertical-bars';
   };
 
   useEffect(() => {
@@ -46,206 +42,115 @@ export function AnimatedLogo({
   }, [currentSection, variant, displayVariant]);
 
   const activeVariant = variant === 'auto' ? displayVariant : (variant as Variant);
-  
-  const sizeMap = {
-    sm: { width: 80, height: 80 },
-    md: { width: 120, height: 120 },
-    lg: { width: 160, height: 160 },
-    xl: { width: 200, height: 200 }
+
+  const sizeConfig = {
+    sm: { width: 40, height: 20 },
+    md: { width: 60, height: 30 },
+    lg: { width: 80, height: 40 },
   };
 
-  const dimensions = sizeMap[size];
-
-  const renderVariant = () => {
-    switch (activeVariant) {
-      case 'vertical-pulse':
-        return (
-          <svg 
-            width={dimensions.width} 
-            height={dimensions.height}
-            viewBox="0 0 120 120" 
-            className="drop-shadow-lg"
-          >
-            <defs>
-              <style>{`
-                @keyframes pulse-bar-1 { 0%, 100% { height: 20px; } 50% { height: 50px; } }
-                @keyframes pulse-bar-2 { 0%, 100% { height: 30px; } 50% { height: 60px; } }
-                @keyframes pulse-bar-3 { 0%, 100% { height: 40px; } 50% { height: 70px; } }
-                @keyframes pulse-bar-4 { 0%, 100% { height: 35px; } 50% { height: 65px; } }
-                @keyframes pulse-bar-5 { 0%, 100% { height: 25px; } 50% { height: 55px; } }
-                @keyframes pulse-bar-6 { 0%, 100% { height: 30px; } 50% { height: 60px; } }
-                .bar-1 { animation: pulse-bar-1 1.4s ease-in-out infinite; }
-                .bar-2 { animation: pulse-bar-2 1.4s ease-in-out infinite 0.1s; }
-                .bar-3 { animation: pulse-bar-3 1.4s ease-in-out infinite 0.2s; }
-                .bar-4 { animation: pulse-bar-4 1.4s ease-in-out infinite 0.15s; }
-                .bar-5 { animation: pulse-bar-5 1.4s ease-in-out infinite 0.25s; }
-                .bar-6 { animation: pulse-bar-6 1.4s ease-in-out infinite 0.1s; }
-              `}</style>
-            </defs>
-            <rect x="8" y="60" width="8" height="20" fill="#3b82f6" className="bar-1" rx="2"/>
-            <rect x="20" y="50" width="8" height="30" fill="#06b6d4" className="bar-2" rx="2"/>
-            <rect x="32" y="40" width="8" height="40" fill="#f97316" className="bar-3" rx="2"/>
-            <rect x="44" y="45" width="8" height="35" fill="#06b6d4" className="bar-4" rx="2"/>
-            <rect x="56" y="55" width="8" height="25" fill="#3b82f6" className="bar-5" rx="2"/>
-            <rect x="68" y="50" width="8" height="30" fill="#06b6d4" className="bar-6" rx="2"/>
-            <rect x="80" y="60" width="8" height="20" fill="#f97316" className="bar-1" rx="2"/>
-            <rect x="92" y="55" width="8" height="25" fill="#3b82f6" className="bar-2" rx="2"/>
-          </svg>
-        );
-
-      case 'horizontal-line':
-        return (
-          <svg 
-            width={dimensions.width} 
-            height={dimensions.height}
-            viewBox="0 0 120 120"
-            className="drop-shadow-lg"
-          >
-            <defs>
-              <style>{`
-                @keyframes wave-line {
-                  0% { d: path('M 5 60 Q 20 50, 35 60 T 65 60 T 95 60 T 120 60'); }
-                  25% { d: path('M 5 60 Q 20 45, 35 60 T 65 60 T 95 60 T 120 60'); }
-                  50% { d: path('M 5 60 Q 20 50, 35 60 T 65 60 T 95 60 T 120 60'); }
-                  75% { d: path('M 5 60 Q 20 70, 35 60 T 65 60 T 95 60 T 120 60'); }
-                  100% { d: path('M 5 60 Q 20 50, 35 60 T 65 60 T 95 60 T 120 60'); }
-                }
-                .wave { animation: wave-line 2.5s ease-in-out infinite; }
-              `}</style>
-            </defs>
-            <path 
-              className="wave"
-              d="M 5 60 Q 20 50, 35 60 T 65 60 T 95 60 T 120 60" 
-              stroke="#3b82f6" 
-              strokeWidth="3" 
-              fill="none" 
-              strokeLinecap="round"
-            />
-            <circle cx="60" cy="60" r="4" fill="#f97316" />
-          </svg>
-        );
-
-      case 'network-nodes':
-        return (
-          <svg 
-            width={dimensions.width} 
-            height={dimensions.height}
-            viewBox="0 0 120 120"
-            className="drop-shadow-lg"
-          >
-            <defs>
-              <style>{`
-                @keyframes node-pulse { 0%, 100% { r: 6; opacity: 1; } 50% { r: 9; opacity: 0.6; } }
-                .node { animation: node-pulse 2s ease-in-out infinite; }
-              `}</style>
-            </defs>
-            {/* Center node */}
-            <circle cx="60" cy="60" r="8" fill="#f97316" />
-            {/* Surrounding nodes */}
-            <circle cx="60" cy="25" r="6" className="node" fill="#3b82f6" style={{animationDelay: '0s'}}/>
-            <circle cx="85" cy="35" r="6" className="node" fill="#06b6d4" style={{animationDelay: '0.2s'}}/>
-            <circle cx="95" cy="60" r="6" className="node" fill="#3b82f6" style={{animationDelay: '0.4s'}}/>
-            <circle cx="85" cy="85" r="6" className="node" fill="#06b6d4" style={{animationDelay: '0.1s'}}/>
-            <circle cx="60" cy="95" r="6" className="node" fill="#3b82f6" style={{animationDelay: '0.3s'}}/>
-            <circle cx="35" cy="85" r="6" className="node" fill="#06b6d4" style={{animationDelay: '0.5s'}}/>
-            <circle cx="25" cy="60" r="6" className="node" fill="#3b82f6" style={{animationDelay: '0.2s'}}/>
-            <circle cx="35" cy="35" r="6" className="node" fill="#06b6d4" style={{animationDelay: '0.4s'}}/>
-            {/* Connection lines */}
-            <line x1="60" y1="60" x2="60" y2="25" stroke="#3b82f6" strokeWidth="1" opacity="0.4"/>
-            <line x1="60" y1="60" x2="85" y2="35" stroke="#06b6d4" strokeWidth="1" opacity="0.4"/>
-            <line x1="60" y1="60" x2="95" y2="60" stroke="#3b82f6" strokeWidth="1" opacity="0.4"/>
-            <line x1="60" y1="60" x2="85" y2="85" stroke="#06b6d4" strokeWidth="1" opacity="0.4"/>
-            <line x1="60" y1="60" x2="60" y2="95" stroke="#3b82f6" strokeWidth="1" opacity="0.4"/>
-            <line x1="60" y1="60" x2="35" y2="85" stroke="#06b6d4" strokeWidth="1" opacity="0.4"/>
-            <line x1="60" y1="60" x2="25" y2="60" stroke="#3b82f6" strokeWidth="1" opacity="0.4"/>
-            <line x1="60" y1="60" x2="35" y2="35" stroke="#06b6d4" strokeWidth="1" opacity="0.4"/>
-          </svg>
-        );
-
-      case 'equalizer':
-        return (
-          <svg 
-            width={dimensions.width} 
-            height={dimensions.height}
-            viewBox="0 0 120 120"
-            className="drop-shadow-lg"
-          >
-            <defs>
-              <style>{`
-                @keyframes eq-1 { 0%, 100% { height: 25px; y: 55px; } 50% { height: 50px; y: 40px; } }
-                @keyframes eq-2 { 0%, 100% { height: 35px; y: 50px; } 50% { height: 60px; y: 35px; } }
-                @keyframes eq-3 { 0%, 100% { height: 45px; y: 45px; } 50% { height: 70px; y: 30px; } }
-                @keyframes eq-4 { 0%, 100% { height: 40px; y: 47px; } 50% { height: 65px; y: 32px; } }
-                @keyframes eq-5 { 0%, 100% { height: 30px; y: 52px; } 50% { height: 55px; y: 37px; } }
-                @keyframes eq-6 { 0%, 100% { height: 25px; y: 55px; } 50% { height: 50px; y: 40px; } }
-                .eq-bar-1 { animation: eq-1 1.5s ease-in-out infinite; }
-                .eq-bar-2 { animation: eq-2 1.5s ease-in-out infinite 0.1s; }
-                .eq-bar-3 { animation: eq-3 1.5s ease-in-out infinite 0.2s; }
-                .eq-bar-4 { animation: eq-4 1.5s ease-in-out infinite 0.15s; }
-                .eq-bar-5 { animation: eq-5 1.5s ease-in-out infinite 0.25s; }
-                .eq-bar-6 { animation: eq-6 1.5s ease-in-out infinite 0.1s; }
-              `}</style>
-            </defs>
-            <rect x="10" className="eq-bar-1" width="9" fill="#3b82f6" rx="2"/>
-            <rect x="22" className="eq-bar-2" width="9" fill="#06b6d4" rx="2"/>
-            <rect x="34" className="eq-bar-3" width="9" fill="#f97316" rx="2"/>
-            <rect x="46" className="eq-bar-4" width="9" fill="#06b6d4" rx="2"/>
-            <rect x="58" className="eq-bar-5" width="9" fill="#3b82f6" rx="2"/>
-            <rect x="70" className="eq-bar-6" width="9" fill="#06b6d4" rx="2"/>
-            <rect x="82" className="eq-bar-1" width="9" fill="#f97316" rx="2"/>
-          </svg>
-        );
-
-      case 'frequency-spectrum':
-        return (
-          <svg 
-            width={dimensions.width} 
-            height={dimensions.height}
-            viewBox="0 0 120 120"
-            className="drop-shadow-lg"
-          >
-            <defs>
-              <linearGradient id="specGradient" x1="0%" y1="50%" x2="100%" y2="50%">
-                <stop offset="0%" stopColor="#3b82f6" />
-                <stop offset="50%" stopColor="#06b6d4" />
-                <stop offset="100%" stopColor="#f97316" />
-              </linearGradient>
-              <style>{`
-                @keyframes curve-wave {
-                  0% { d: path('M 10 60 Q 30 50, 50 60 Q 70 70, 90 60 Q 110 50, 120 55'); }
-                  50% { d: path('M 10 60 Q 30 45, 50 60 Q 70 75, 90 60 Q 110 45, 120 55'); }
-                  100% { d: path('M 10 60 Q 30 50, 50 60 Q 70 70, 90 60 Q 110 50, 120 55'); }
-                }
-                .spectrum { animation: curve-wave 2.8s ease-in-out infinite; }
-              `}</style>
-            </defs>
-            <path 
-              className="spectrum"
-              d="M 10 60 Q 30 50, 50 60 Q 70 70, 90 60 Q 110 50, 120 55" 
-              stroke="url(#specGradient)" 
-              strokeWidth="3" 
-              fill="none" 
-              strokeLinecap="round"
-            />
-            <circle cx="50" cy="60" r="3" fill="#f97316" opacity="0.6"/>
-            <circle cx="70" cy="65" r="3" fill="#3b82f6" opacity="0.6"/>
-          </svg>
-        );
-
-      default:
-        return null;
-    }
-  };
+  const config = sizeConfig[size];
 
   return (
-    <div className={`flex flex-col items-center gap-2 transition-opacity duration-200 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-      {renderVariant()}
+    <div className={`flex flex-col items-center gap-1 transition-opacity duration-200 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+
+      {/* Vertical bars */}
+      {activeVariant === 'vertical-bars' && (
+        <svg width={config.width} height={config.height} viewBox="0 0 60 30" className="text-accent">
+          <style>{`
+            @keyframes bar1 { 0%, 100% { height: 8px; } 50% { height: 24px; } }
+            @keyframes bar2 { 0%, 100% { height: 12px; } 50% { height: 28px; } }
+            @keyframes bar3 { 0%, 100% { height: 16px; } 50% { height: 30px; } }
+            @keyframes bar4 { 0%, 100% { height: 14px; } 50% { height: 28px; } }
+            @keyframes bar5 { 0%, 100% { height: 10px; } 50% { height: 26px; } }
+            .b1 { animation: bar1 1s ease-in-out infinite; }
+            .b2 { animation: bar2 1s ease-in-out infinite 0.1s; }
+            .b3 { animation: bar3 1s ease-in-out infinite 0.2s; }
+            .b4 { animation: bar4 1s ease-in-out infinite 0.1s; }
+            .b5 { animation: bar5 1s ease-in-out infinite 0.05s; }
+          `}</style>
+          <rect className="b1" x="4" y="15" width="5" height="8" fill="currentColor" rx="1" />
+          <rect className="b2" x="12" y="13" width="5" height="12" fill="currentColor" rx="1" />
+          <rect className="b3" x="20" y="11" width="5" height="16" fill="currentColor" rx="1" />
+          <rect className="b4" x="28" y="12" width="5" height="14" fill="currentColor" rx="1" />
+          <rect className="b5" x="36" y="14" width="5" height="10" fill="currentColor" rx="1" />
+          <rect className="b1" x="44" y="15" width="5" height="8" fill="currentColor" rx="1" />
+          <rect className="b2" x="52" y="13" width="5" height="12" fill="currentColor" rx="1" />
+        </svg>
+      )}
+
+      {/* Horizontal line */}
+      {activeVariant === 'horizontal-line' && (
+        <svg width={config.width} height={config.height} viewBox="0 0 60 30" className="text-accent">
+          <style>{`
+            @keyframes flowLine { 0% { strokeDashoffset: 40; } 100% { strokeDashoffset: 0; } }
+            .line { stroke: currentColor; strokeWidth: 2; fill: none; strokeLinecap: round; animation: flowLine 2s linear infinite; }
+          `}</style>
+          <path className="line" d="M 2 15 Q 10 8, 18 15 T 34 15 T 50 15 T 60 15" strokeDasharray="40" />
+        </svg>
+      )}
+
+      {/* Network nodes */}
+      {activeVariant === 'network-nodes' && (
+        <svg width={config.width} height={config.height} viewBox="0 0 60 30" className="text-accent">
+          <style>{`
+            @keyframes pulse { 0%, 100% { r: 2; } 50% { r: 3.5; } }
+            .node { fill: currentColor; animation: pulse 1.5s ease-in-out infinite; }
+            .n1 { animation-delay: 0s; }
+            .n2 { animation-delay: 0.2s; }
+            .n3 { animation-delay: 0.4s; }
+            .n4 { animation-delay: 0.1s; }
+            .n5 { animation-delay: 0.3s; }
+          `}</style>
+          <line x1="30" y1="15" x2="15" y2="6" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+          <line x1="30" y1="15" x2="50" y2="6" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+          <line x1="30" y1="15" x2="10" y2="24" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+          <line x1="30" y1="15" x2="55" y2="24" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+          <circle className="node n1" cx="30" cy="15" r="2" />
+          <circle className="node n2" cx="15" cy="6" r="1.5" />
+          <circle className="node n3" cx="50" cy="6" r="1.5" />
+          <circle className="node n4" cx="10" cy="24" r="1.5" />
+          <circle className="node n5" cx="55" cy="24" r="1.5" />
+        </svg>
+      )}
+
+      {/* Equalizer */}
+      {activeVariant === 'equalizer' && (
+        <svg width={config.width} height={config.height} viewBox="0 0 60 30" className="text-accent">
+          <style>{`
+            @keyframes eq1 { 0%, 100% { height: 6px; } 50% { height: 18px; } }
+            @keyframes eq2 { 0%, 100% { height: 8px; } 50% { height: 20px; } }
+            @keyframes eq3 { 0%, 100% { height: 10px; } 50% { height: 22px; } }
+            .e1 { animation: eq1 1.1s ease-in-out infinite; }
+            .e2 { animation: eq2 1.1s ease-in-out infinite 0.1s; }
+            .e3 { animation: eq3 1.1s ease-in-out infinite 0.2s; }
+          `}</style>
+          <rect className="e1" x="6" y="15" width="4" height="6" fill="currentColor" rx="1" />
+          <rect className="e2" x="14" y="14" width="4" height="8" fill="currentColor" rx="1" />
+          <rect className="e3" x="22" y="13" width="4" height="10" fill="currentColor" rx="1" />
+          <rect className="e2" x="30" y="14" width="4" height="8" fill="currentColor" rx="1" />
+          <rect className="e1" x="38" y="15" width="4" height="6" fill="currentColor" rx="1" />
+          <rect className="e2" x="46" y="14" width="4" height="8" fill="currentColor" rx="1" />
+        </svg>
+      )}
+
+      {/* Frequency wave */}
+      {activeVariant === 'frequency-wave' && (
+        <svg width={config.width} height={config.height} viewBox="0 0 60 30" className="text-accent">
+          <style>{`
+            @keyframes wave { 0% { d: path('M 2 15 Q 8 10, 14 15 T 26 15 T 38 15 T 50 15 T 60 15'); } 50% { d: path('M 2 15 Q 8 8, 14 15 T 26 15 T 38 15 T 50 15 T 60 15'); } 100% { d: path('M 2 15 Q 8 10, 14 15 T 26 15 T 38 15 T 50 15 T 60 15'); } }
+            .w { stroke: currentColor; strokeWidth: 1.5; fill: none; strokeLinecap: round; animation: wave 2s ease-in-out infinite; }
+          `}</style>
+          <path className="w" d="M 2 15 Q 8 10, 14 15 T 26 15 T 38 15 T 50 15 T 60 15" />
+        </svg>
+      )}
+
+      {/* Static text */}
       {showText && (
-        <div className="text-center">
-          <h1 className="text-sm md:text-base font-bold text-primary whitespace-nowrap">
+        <div className="text-center mt-1">
+          <h1 className="text-xs md:text-sm font-bold text-primary leading-tight">
             PeakSNR
           </h1>
-          <p className="text-xs text-muted-foreground whitespace-nowrap">Signal Solutions</p>
         </div>
       )}
     </div>

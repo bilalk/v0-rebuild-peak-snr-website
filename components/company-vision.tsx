@@ -2,7 +2,7 @@
 
 import { Card } from '@/components/ui/card';
 import { Shield, Zap, Target, Code } from 'lucide-react';
-import { BrainWithLogos } from './brain-with-logos';
+
 
 const visionPillars = [
   {
@@ -112,22 +112,7 @@ export function CompanyVision() {
           </div>
         </div>
 
-        {/* Brain with signals visualization section */}
-        <div className="mt-20 md:mt-32">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Advanced Signal Processing with <span className="text-accent">Optimized Signal-to-Noise Ratio</span>
-            </h3>
-            <p className="text-lg text-muted-foreground">
-              Enterprise systems process information from countless sources. We filter the noise and amplify the signal.
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <div className="max-w-lg w-full">
-              <BrainWithLogos />
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );
