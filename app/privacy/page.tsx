@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Navigation } from '@/components/navigation';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - PeakSNR',
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <main className="min-h-screen bg-background pt-32 pb-20">
+    <>
+      <Navigation />
+      <main className="min-h-screen bg-background pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Header */}
         <div className="mb-12">
@@ -143,5 +146,6 @@ export default function PrivacyPolicy() {
         </div>
       </div>
     </main>
+    </>
   );
 }

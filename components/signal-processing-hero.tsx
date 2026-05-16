@@ -23,30 +23,9 @@ export function SignalProcessingHero() {
   return (
     <section className="py-20 md:py-32">
       <div className="container mx-auto px-4">
-        {/* Rotating narrative text */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="min-h-[100px] flex items-center justify-center">
-            <p className="text-2xl md:text-3xl font-bold text-accent transition-opacity duration-500">
-              {narratives[currentNarrative]}
-            </p>
-          </div>
-          <div className="flex justify-center gap-2 mt-8">
-            {narratives.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentNarrative(idx)}
-                className={`h-2 rounded-full transition-all ${
-                  idx === currentNarrative ? 'bg-accent w-8' : 'bg-muted w-2'
-                }`}
-                aria-label={`Go to narrative ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Brain with logos visualization */}
+        {/* Brain with logos visualization - full width */}
         <div className="flex justify-center">
-          <div className="max-w-lg w-full">
+          <div className="max-w-2xl w-full">
             <BrainWithLogos />
           </div>
         </div>

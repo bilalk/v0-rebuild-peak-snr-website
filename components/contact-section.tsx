@@ -13,16 +13,42 @@ export function ContactSection() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const data = await response.json();
+      console.log('Message sent successfully:', data);
+      
+      setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
+      
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+      console.error('Contact form error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -158,11 +184,24 @@ export function ContactSection() {
                 />
               </div>
 
+              {error && (
+                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 text-sm">
+                  {error}
+                </div>
+              )}
+
+              {submitted && (
+                <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-500 text-sm">
+                  Thank you! Your message has been sent. We&apos;ll get back to you soon.
+                </div>
+              )}
+
               <Button 
                 type="submit"
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                disabled={loading || submitted}
+                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {submitted ? 'Message Sent! ✓' : 'Send Message'}
+                {loading ? 'Sending...' : submitted ? 'Message Sent! ✓' : 'Send Message'}
               </Button>
             </form>
           </Card>
