@@ -7,21 +7,19 @@ import { Button } from '@/components/ui/button';
 import { Linkedin, Youtube, MessageCircle, Facebook } from 'lucide-react';
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Message from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
-    window.location.href = `mailto:info@peaksnr.tech?subject=${subject}&body=${body}`;
+    const subject = encodeURIComponent(`[PeakSNR Website] Message from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    window.open(`mailto:kbse2000@gmail.com?subject=${subject}&body=${body}`, '_self');
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setSubmitted(false), 5000);
+    setTimeout(() => setSubmitted(false), 6000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -55,13 +53,9 @@ export function ContactSection() {
               </div>
               <h3 className="font-bold mb-1 text-foreground text-sm">Facebook</h3>
               <p className="text-xs text-muted-foreground mb-3">Follow our page for updates</p>
-              <a
-                href="https://www.facebook.com/profile.php?id=100065613390944"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
-              >
-                Visit Page →
+              <a href="https://www.facebook.com/profile.php?id=100065613390944" target="_blank" rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors">
+                Visit Page &rarr;
               </a>
             </Card>
 
@@ -73,14 +67,10 @@ export function ContactSection() {
                 </div>
               </div>
               <h3 className="font-bold mb-1 text-foreground text-sm">LinkedIn</h3>
-              <p className="text-xs text-muted-foreground mb-3">Connect with our team professionally</p>
-              <a
-                href="https://www.linkedin.com/company/102984111/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
-              >
-                Visit Profile →
+              <p className="text-xs text-muted-foreground mb-3">Connect professionally</p>
+              <a href="https://www.linkedin.com/company/102984111/" target="_blank" rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors">
+                Visit Profile &rarr;
               </a>
             </Card>
 
@@ -92,14 +82,10 @@ export function ContactSection() {
                 </div>
               </div>
               <h3 className="font-bold mb-1 text-foreground text-sm">Discord</h3>
-              <p className="text-xs text-muted-foreground mb-3">Find us: <strong className="text-foreground">kaybee2025</strong></p>
-              <a
-                href="https://discord.com/users/kaybee2025"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
-              >
-                Join Chat →
+              <p className="text-xs text-muted-foreground mb-3">ID: <strong className="text-foreground">kaybee2025</strong></p>
+              <a href="https://discord.com/users/kaybee2025" target="_blank" rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors">
+                Join Chat &rarr;
               </a>
             </Card>
 
@@ -111,81 +97,50 @@ export function ContactSection() {
                 </div>
               </div>
               <h3 className="font-bold mb-1 text-foreground text-sm">YouTube</h3>
-              <p className="text-xs text-muted-foreground mb-3">Watch our signal solutions content</p>
-              <a
-                href="https://www.youtube.com/@peaksnr5510"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors"
-              >
-                Subscribe →
+              <p className="text-xs text-muted-foreground mb-3">Watch our content</p>
+              <a href="https://www.youtube.com/@peaksnr5510" target="_blank" rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 font-semibold text-xs transition-colors">
+                Subscribe &rarr;
               </a>
             </Card>
           </div>
 
           {/* Contact Form */}
           <Card className="bg-background border-border p-8 md:p-12">
-            <h3 className="text-2xl font-bold mb-8 text-foreground">Send us a Message</h3>
+            <h3 className="text-2xl font-bold mb-2 text-foreground">Send us a Message</h3>
+            <p className="text-sm text-muted-foreground mb-8">
+              Your message will open in your email client addressed to <span className="text-accent">kbse2000@gmail.com</span>
+            </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    required
-                    className="bg-card border-border text-foreground placeholder:text-muted-foreground"
-                  />
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Name</label>
+                  <Input id="name" name="name" value={formData.name} onChange={handleChange}
+                    placeholder="Your name" required
+                    className="bg-card border-border text-foreground placeholder:text-muted-foreground" />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="your@email.com"
-                    required
-                    className="bg-card border-border text-foreground placeholder:text-muted-foreground"
-                  />
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Email</label>
+                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange}
+                    placeholder="your@email.com" required
+                    className="bg-card border-border text-foreground placeholder:text-muted-foreground" />
                 </div>
               </div>
-
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your project..."
-                  rows={5}
-                  required
-                  className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
+                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">Message</label>
+                <textarea id="message" name="message" value={formData.message} onChange={handleChange}
+                  placeholder="Tell us about your project..." rows={5} required
+                  className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" />
               </div>
 
               {submitted && (
                 <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-500 text-sm">
-                  Thank you! Your email client will open to send your message.
+                  &#10003; Your email client has opened. Please hit Send to deliver your message to kbse2000@gmail.com
                 </div>
               )}
 
-              <Button
-                type="submit"
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-              >
+              <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                 Send Message
               </Button>
             </form>

@@ -11,6 +11,13 @@ const narratives = [
   "Filter out information overload, amplify decision-making clarity",
 ];
 
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 export function HeroSection() {
   const [currentNarrative, setCurrentNarrative] = useState(0);
 
@@ -39,7 +46,6 @@ export function HeroSection() {
               <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" />
             </filter>
           </defs>
-
           <g filter="url(#waveBlur)" strokeLinecap="round" strokeLinejoin="round">
             <path d="M -50 200 Q 50 150, 150 200 T 350 200 T 550 200 T 750 200 T 950 200 T 1150 200 T 1350 200"
               stroke="url(#waveGradient)" strokeWidth="3" fill="none" opacity="0.7"/>
@@ -53,7 +59,6 @@ export function HeroSection() {
             <line x1="800" y1="130" x2="800" y2="370" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4"/>
             <line x1="1000" y1="170" x2="1000" y2="330" stroke="#06b6d4" strokeWidth="1.5" opacity="0.4"/>
           </g>
-
           <g>
             <circle cx="200" cy="200" r="5" fill="#3b82f6" opacity="0.8" className="animate-pulse"/>
             <circle cx="400" cy="220" r="4" fill="#06b6d4" opacity="0.7" className="animate-pulse" style={{animationDelay: '0.2s'}}/>
@@ -61,7 +66,6 @@ export function HeroSection() {
             <circle cx="800" cy="210" r="4" fill="#3b82f6" opacity="0.7" className="animate-pulse" style={{animationDelay: '0.1s'}}/>
             <circle cx="1000" cy="250" r="5" fill="#06b6d4" opacity="0.8" className="animate-pulse" style={{animationDelay: '0.3s'}}/>
           </g>
-
           <g stroke="#3b82f6" strokeWidth="1" opacity="0.3" strokeDasharray="5,5">
             <line x1="200" y1="200" x2="400" y2="220" />
             <line x1="400" y1="220" x2="600" y2="240" />
@@ -84,10 +88,10 @@ export function HeroSection() {
                 <span className="text-foreground">Deliver Crystal Clear</span>{' '}
                 <span className="text-primary">Solutions</span>
               </h1>
-
               <p className="text-lg text-muted-foreground max-w-lg">
-                PeakSNR optimizes enterprise communications by filtering out the noise and amplifying what matters most.
-                From AI voice solutions to custom radio systems, we deliver crystal-clear results through intelligent signal management.
+                PeakSNR optimizes enterprise communications by filtering out the noise and amplifying
+                what matters most. From AI voice solutions to custom radio systems, we deliver
+                crystal-clear results through intelligent signal management.
               </p>
             </div>
 
@@ -96,6 +100,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
+                onClick={() => scrollToSection('services')}
               >
                 View Services
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -104,6 +109,7 @@ export function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="border-primary text-primary hover:bg-primary/10"
+                onClick={() => scrollToSection('contact')}
               >
                 Get in Touch
               </Button>
@@ -111,15 +117,14 @@ export function HeroSection() {
 
             {/* Trust indicators */}
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-              <p>✓ Enterprise-Grade Security</p>
-              <p>✓ Military-Grade Precision</p>
-              <p>✓ Custom AI Solutions</p>
+              <p>&#10003; Enterprise-Grade Security</p>
+              <p>&#10003; Military-Grade Precision</p>
+              <p>&#10003; Custom AI Solutions</p>
             </div>
           </div>
 
-          {/* Right visual - Rotating narrative + Brain animation */}
+          {/* Right visual */}
           <div className="flex flex-col gap-4 items-center justify-center">
-            {/* Rotating narrative text */}
             <div className="min-h-[72px] flex items-center justify-center text-center px-2">
               <p
                 key={currentNarrative}
@@ -128,7 +133,6 @@ export function HeroSection() {
                 {narratives[currentNarrative]}
               </p>
             </div>
-            {/* Dot indicators */}
             <div className="flex justify-center gap-2">
               {narratives.map((_, idx) => (
                 <button
@@ -141,7 +145,6 @@ export function HeroSection() {
                 />
               ))}
             </div>
-            {/* Brain with logos animation */}
             <div className="w-full max-w-sm">
               <BrainWithLogos />
             </div>
@@ -154,7 +157,7 @@ export function HeroSection() {
           animation: heroFadeIn 0.6s ease-out;
         }
         @keyframes heroFadeIn {
-          0% { opacity: 0; transform: translateY(8px); }
+          0%   { opacity: 0; transform: translateY(8px); }
           100% { opacity: 1; transform: translateY(0); }
         }
       `}</style>
